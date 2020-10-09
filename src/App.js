@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
+import { fetchDog } from './store/actions';
 
-function App() {
+function App(props) {
+	const { dispatch } = props;
+
 	return (
 		<div className='App'>
 			<header className='App-header'>
@@ -18,9 +22,14 @@ function App() {
 				>
 					Learn React
 				</a>
+				<button onClick={() => dispatch(fetchDog())}>Click me</button>
 			</header>
 		</div>
 	);
 }
 
-export default App;
+const ConnectedApp = connect((state) => {
+	return state;
+})(App);
+
+export default ConnectedApp;

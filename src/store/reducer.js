@@ -1,18 +1,31 @@
 import * as types from './types';
 
-const initialState = {};
+const initialState = {
+	url: '',
+	loading: false,
+	error: false,
+};
 
 const rootReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case types.DO_SOMETHING:
-			return [
-				...state,
-				{
-					id: action.id,
-					text: action.text,
-					completed: false,
-				},
-			];
+		case 'REQUESTED_DOG':
+			return {
+				url: '',
+				loading: true,
+				error: false,
+			};
+		case 'REQUESTED_DOG_SUCCEEDED':
+			return {
+				url: action.url,
+				loading: false,
+				error: false,
+			};
+		case 'REQUESTED_DOG_FAILED':
+			return {
+				url: '',
+				loading: false,
+				error: true,
+			};
 		default:
 			return state;
 	}
